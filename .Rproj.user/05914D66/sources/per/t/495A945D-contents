@@ -5,6 +5,12 @@ library(rvest)
 italy_url <- "https://www.eloratings.net/Italy"
 turkey_url <- "https://www.eloratings.net/Turkey"
 
+italy_page<- read_html(italy_url)
+italy_team<- italy_page %>% html_nodes(".r1") %>% html_text()
+italy_goal<- italy_page %>% html_nodes(".r2") %>% html_text()
+italy_rating<- italy_page %>% html_nodes(".r5") %>% html_text()
+
+italy_date<- italy_page %>% html_nodes(".r0") %>% html_text()
 
 # use system2 to invoke phantomjs via it's executable
 # Testing for a single country;
@@ -23,6 +29,16 @@ country_name <- page %>%
 
 country_name
 
+opposing <- page %>%
+  html_nodes(".r1 a") %>%
+  html_text()
+
+opposing
+
+teams <- page %>%
+  html_nodes(".r1")
+
+teams
 
 
 ### Not Working HOLD ###  
